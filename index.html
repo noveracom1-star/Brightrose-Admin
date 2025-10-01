@@ -707,6 +707,73 @@
       color: white;
     }
     
+    /* ========= Buttons ========= */
+    .btn {
+      padding: 10px 20px;
+      border-radius: 8px;
+      border: none;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-family: inherit;
+      font-size: 0.9rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    
+    .btn.primary {
+      background: var(--primary);
+      color: white;
+    }
+    
+    .btn.primary:hover {
+      background: var(--primary-dark);
+    }
+    
+    .btn.outline {
+      background: transparent;
+      border: 1px solid var(--muted-2);
+      color: var(--muted);
+    }
+    
+    .btn.outline:hover {
+      border-color: var(--primary);
+      color: var(--primary);
+    }
+    
+    body.dark .btn.outline {
+      border-color: var(--dark);
+      color: var(--muted-2);
+    }
+    
+    body.dark .btn.outline:hover {
+      border-color: var(--primary);
+      color: var(--primary-light);
+    }
+    
+    /* ========= Form Controls ========= */
+    .form-control {
+      padding: 10px 16px;
+      border-radius: 8px;
+      border: 1px solid var(--muted-2);
+      background: var(--light);
+      font-family: inherit;
+      font-size: 0.9rem;
+      color: var(--dark);
+    }
+    
+    body.dark .form-control {
+      background: var(--dark);
+      border-color: var(--dark);
+      color: var(--light);
+    }
+    
+    .form-control:focus {
+      outline: none;
+      border-color: var(--primary);
+    }
+    
     /* ========= Loading Spinner ========= */
     .spinner {
       width: 20px;
@@ -1546,21 +1613,13 @@
       }, 5000);
     }
     
-    // Initialize the admin panel
+    // Initialize the admin panel (no authentication required)
     function initAdminPanel() {
-      // Check if user is authenticated and is an admin
-      auth.onAuthStateChanged((user) => {
-        if (user) {
-          // Check if user is admin (you would implement your own logic here)
-          loadUsers();
-          loadMedia();
-        } else {
-          // Redirect to login if not authenticated
-          window.location.href = 'login.html';
-        }
-      });
+      // Load users and media immediately so users can access the panel without logging in
+      loadUsers();
+      loadMedia();
     }
-    
+
     // Start the admin panel
     initAdminPanel();
   </script>
